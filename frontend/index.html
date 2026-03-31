@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Code Reviewer</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <span class="eyebrow">Smart Code Reviewer</span>
+        <h1>Readable feedback for every review run.</h1>
+        <p>
+          Paste code, send it to the backend, and view the model response as
+          structured review notes instead of one long wall of text.
+        </p>
+      </section>
+
+      <section class="workspace">
+        <div class="controls">
+          <div class="field">
+            <label for="language">Language</label>
+            <select id="language">
+              <option value="Python">Python</option>
+              <option value="C">C</option>
+              <option value="JavaScript">JavaScript</option>
+              <option value="Java">Java</option>
+              <option value="C++">C++</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="code">Code to review</label>
+            <textarea
+              id="code"
+              placeholder="Paste the code you want reviewed..."
+            ></textarea>
+          </div>
+          <button id="reviewButton" type="button">Run Review</button>
+        </div>
+      </section>
+
+      <section class="result-shell">
+        <div class="result-head">
+          <div class="result-copy">
+            <h2>Review Output</h2>
+            <p>
+              Issues, improvements, security notes, and rating are grouped
+              automatically.
+            </p>
+          </div>
+          <div class="rating" id="ratingBox" hidden>
+            <span class="rating-label">Final Rating</span>
+            <span class="rating-value" id="ratingValue">-</span>
+          </div>
+        </div>
+
+        <div class="status info show" id="statusMessage">
+          Add some code and run a review to see the formatted feedback here.
+        </div>
+
+        <div class="summary" id="summaryGrid">
+          <div class="metric">
+            <div class="metric-title">Bugs Found</div>
+            <div class="metric-value" id="bugsCount">0</div>
+          </div>
+          <div class="metric">
+            <div class="metric-title">Optimizations</div>
+            <div class="metric-value" id="optimizationCount">0</div>
+          </div>
+          <div class="metric">
+            <div class="metric-title">Quality Notes</div>
+            <div class="metric-value" id="qualityCount">0</div>
+          </div>
+          <div class="metric">
+            <div class="metric-title">Security Notes</div>
+            <div class="metric-value" id="securityCount">0</div>
+          </div>
+        </div>
+
+        <div class="feedback-grid">
+          <article class="card bugs" id="bugsCard">
+            <h3>Bugs or Errors</h3>
+            <ul id="bugsList"></ul>
+          </article>
+
+          <article class="card optimization" id="optimizationCard">
+            <h3>Optimization Suggestions</h3>
+            <ul id="optimizationList"></ul>
+          </article>
+
+          <article class="card quality" id="qualityCard">
+            <h3>Code Quality Improvements</h3>
+            <ul id="qualityList"></ul>
+          </article>
+
+          <article class="card security" id="securityCard">
+            <h3>Security Issues</h3>
+            <ul id="securityList"></ul>
+          </article>
+        </div>
+
+        <div class="empty" id="emptyState">
+          Structured cards will appear here after the API returns feedback.
+        </div>
+
+        <div class="raw-block" id="rawBlock">
+          <pre id="rawFeedback"></pre>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
